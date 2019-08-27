@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack --watch --progress --display-error-details --config webpack.config.js"
+    "start": "webpack --watch --progress --display-error-details --hot --config webpack.config.js",
+    "server": "http-server -p 8083"
   },
   "keywords": [],
   "author": "",
@@ -16,7 +17,8 @@
     "@babel/preset-env": "^7.1.0",
     "babel-loader": "^8.0.4",
     "webpack": "^4.20.2",
-    "webpack-cli": "^3.1.2"
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.8.0"
   },
   "dependencies": {
     "@babel/runtime": "^7.1.2"

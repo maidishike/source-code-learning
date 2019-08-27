@@ -1,8 +1,9 @@
 const path = require('path');
 
 let entry = {
-    observable: './learnVue/observable',
-    depend: './learnVue/depend',
+    observable: './vue/js/observable',
+    depend: './vue/js/depend',
+    fengzhuang: './designPattern/js/fengzhuang',
 }
 module.exports = {
     entry: entry,
@@ -25,5 +26,11 @@ module.exports = {
               }
             }
         ]
+    },
+    devServer: {
+        contentBase: path.join(__dirname),  //启动路径
+        host:'localhost',  //域名
+        port: 8083,  //端口号
+        hot: true
     }
 };
