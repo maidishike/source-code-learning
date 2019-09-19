@@ -5,20 +5,19 @@ class Vue {
         observe(this._data, options.render);
     }
 }
-
+let data = {
+    text: 'text',
+    text1: 'text1'
+}
 let app = new Vue({
     el: '#app',
-    data: {
-        text: 'text',
-        text1: 'text1'
-    },
-    render() {
-        console.log('视图更新了...');
+    data: data,
+    render(val) {
+        console.log('视图更新了...', val);
     }
 })
 
 
-app._data.text = 'sdfsdfdfs'
 // 此时可以使用_data的属性动态响应数据的目的，但是我们最终需要app.text = 'xxx'来响应
 function _proxy (data) {
     let self = this;
@@ -30,6 +29,7 @@ function _proxy (data) {
                 return self._data[key];
             },
             set(newVal) {
+                console.log('set: ', newVal)
                 self._data[key] = newVal;
             }
         })
@@ -38,6 +38,7 @@ function _proxy (data) {
 }
 
 app.text = 'sdfsdfdfs'
+console.log(app.text)
 
 /**
  * 通过遍历所有属性的方式对该对象的每一个属性
@@ -57,10 +58,12 @@ function defineReactive(obj, key, val, cb) {
         configurable: true,
         enumerable: true,
         get() {
+            console.log('get')
             return val
         },
         set(newVal) {
             if (val === newVal) return
+            val = newVal
             cb(newVal)
         }
     })
